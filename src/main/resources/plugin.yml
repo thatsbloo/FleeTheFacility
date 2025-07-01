@@ -1,0 +1,4 @@
+name: FleeTheFacility
+version: '1.0-SNAPSHOT'
+main: me.thatsbloo.fleeTheFacility.FleeTheFacility
+api-version: '1.21'
