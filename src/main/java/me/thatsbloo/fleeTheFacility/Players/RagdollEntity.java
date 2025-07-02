@@ -4,8 +4,8 @@ import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
 import io.papermc.paper.connection.PlayerConnection;
 import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
-import net.minecraft.network.protocol.game.ClientboundAddPlayerPacket;
 import net.minecraft.network.protocol.game.ClientboundPlayerInfoUpdatePacket;
+import net.minecraft.network.protocol.game.ClientboundSetEntityDataPacket;
 import net.minecraft.server.level.ClientInformation;
 import net.minecraft.server.network.ServerGamePacketListenerImpl;
 import net.minecraft.world.entity.EntityType;
@@ -33,7 +33,7 @@ public class RagdollEntity {
         GameProfile gameProfile = new GameProfile(UUID.randomUUID(), player.getName());
         gameProfile.getProperties().put("textures", new Property("textures", textures.value(), textures.signature()));
 
-        ServerPlayer ragdoll = new ServerPlayer(
+        ServerPlayer ragdoll = new FakePlayer(
                 ((CraftServer) Bukkit.getServer()).getServer(),
                 ((CraftWorld)player.getWorld()).getHandle(),
                 gameProfile,
@@ -64,6 +64,9 @@ public class RagdollEntity {
             ));
 
             connection.send(new ClientboundAddEntityPacket(ragdoll, helper));
+
+            connection.send(new ClientboundSetEntityDataPacket(ragdoll.getId(), ragdoll.getEntityData().getNonDefaultValues()));
+
         }
 
     }

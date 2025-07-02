@@ -1,6 +1,8 @@
 package me.thatsbloo.fleeTheFacility;
 
 import java.util.UUID;
+
+import me.thatsbloo.fleeTheFacility.Commands.Test;
 import org.bukkit.plugin.java.JavaPlugin;
 import me.thatsbloo.fleeTheFacility.Hacking.*;
 
@@ -15,7 +17,7 @@ public final class FleeTheFacility extends JavaPlugin {
         this.hackManager = new HackManager(this);
         getServer().getPluginManager().registerEvents(new HackListener(), this);
         
-        
+        this.getCommand("test").setExecutor(new Test());
         
         // Plugin startup logic//
         //make computer
