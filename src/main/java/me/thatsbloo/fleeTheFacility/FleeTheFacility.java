@@ -1,12 +1,8 @@
 package me.thatsbloo.fleeTheFacility;
 
-
 import java.util.UUID;
-
-import org.bukkit.event.EventHandler;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import me.thatsbloo.fleeTheFacility.Hacking.HackManager;
+import me.thatsbloo.fleeTheFacility.Hacking.*;
 
 public final class FleeTheFacility extends JavaPlugin {
 
@@ -17,7 +13,10 @@ public final class FleeTheFacility extends JavaPlugin {
     public void onEnable() {
 
         this.hackManager = new HackManager(this);
-        Bukkit.getPluginManager().registerEvents(new HackListener(), this);
+        getServer().getPluginManager().registerEvents(new HackListener(), this);
+        
+        
+        
         // Plugin startup logic//
         //make computer
         //make beast exist

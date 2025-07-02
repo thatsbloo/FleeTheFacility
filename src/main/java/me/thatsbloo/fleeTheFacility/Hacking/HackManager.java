@@ -1,4 +1,6 @@
 package me.thatsbloo.fleeTheFacility.Hacking;
+
+
 import java.util.HashMap;
 import java.util.UUID;
 
@@ -76,13 +78,14 @@ public class HackManager {
 
         public void attempt() {
             attempted = true;
+            
             if (tick >= greenStart && tick <= greenEnd) {
-                player.sendMessage(ChatColor.GREEN + "Hack successful!");
+                player.sendMessage("Hack successful!");
                 // Trigger success logic here, e.g., open a door or give an item
             } else {
-                player.sendMessage(ChatColor.RED + "Hack failed! You were too slow.");
+                player.sendMessage("Hack failed! You were too slow.");
             }
+            
         }
     }
 }
-

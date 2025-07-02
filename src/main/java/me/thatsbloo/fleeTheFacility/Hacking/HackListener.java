@@ -19,9 +19,14 @@ public class HackListener implements Listener {
         if (event.getAction() == Action.RIGHT_CLICK_BLOCK) {
             Block block = event.getClickedBlock();
             if (block != null && block.getType() == Material.ENCHANTING_TABLE) {
+                HackManager hackManager = FleeTheFacility.getPlugin(FleeTheFacility.class).hackManager;
                 if (event.getPlayer().isSneaking()) {
-                    FleeTheFacility.GetInstance().getHackManager().startHacking(player, block);
+                    hackManager.attemptHack(player);
+                } else {
+                    hackManager.startHack(player);
                 }
+
+                event.setCancelled(true); // Prevents the default interaction with the enchanting table
             }
         }
     }
