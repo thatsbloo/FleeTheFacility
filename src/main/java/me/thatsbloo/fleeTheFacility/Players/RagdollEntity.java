@@ -104,25 +104,11 @@ public class RagdollEntity {
 
     public void broadcastStateToPlayers() {
         // I DONT LIKE YOU MOJANG
-        ServerEntity helper = new ServerEntity(
-                this.level,
-                this.ragdoll,
-                EntityType.PLAYER.updateInterval(),
-                false,
-                packet -> {},
-                (packet, ignored) -> {},
-                Set.of()
-        );
+        ServerEntity helper = this.getAsServerEntity();
 
         for (Player playerOnline : Bukkit.getOnlinePlayers()) {
             ServerGamePacketListenerImpl connection = ((CraftPlayer)playerOnline).getHandle().connection;
-            // RAHHH LONG NAMES MOJANG MAPPING AHSDJK,NAK
-            connection.send(new ClientboundPlayerInfoUpdatePacket(
-                    ClientboundPlayerInfoUpdatePacket.Action.ADD_PLAYER,
-                    ragdoll
-            ));
 
-            connection.send(new ClientboundAddEntityPacket(ragdoll, helper));
 
             connection.send(new ClientboundSetEntityDataPacket(ragdoll.getId(), ragdoll.getEntityData().getNonDefaultValues()));
 
