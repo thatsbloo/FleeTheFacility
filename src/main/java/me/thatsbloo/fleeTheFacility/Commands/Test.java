@@ -14,7 +14,7 @@ public class Test implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String s, String[] args)  {
         if (sender instanceof Player) {
             Player p = (Player) sender;
-            RagdollEntity.execute(p);
+//            RagdollEntity.execute(p);
             p.setGameMode(GameMode.SPECTATOR);
             return true;
         }
